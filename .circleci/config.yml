@@ -33,6 +33,7 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
+            bundle install
 
       - save_cache:
           paths:
@@ -43,8 +44,9 @@ jobs:
       - run:
           name: run tests
           command: |
+            bundle exec danger
             . venv/bin/activate
-            python manage.py test
+            python main.py
 
       - store_artifacts:
           path: test-reports
