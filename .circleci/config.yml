@@ -17,6 +17,8 @@ jobs:
       # Store bundle cache
       - type: cache-save
         key: hello-circleci-{{ checksum "Gemfile.lock" }}
+        paths:
+         - ./
 
       # Run Danger
       - run: bundle exec danger
