@@ -1,14 +1,19 @@
 # PRしたファイルの直近のコミット履歴を表で可視化する
 
+require "git"
+g = Git.open("./", :log => Logger.new(STDOUT))
+
 files = (git.added_files + git.modified_files) #=> FileList
 
 markdown "## あなたが修正したファイルに関する直近のコミット\n\n"
 data = []
 reviewer = nil
 files.each do |f|
+
 	# gitからそのファイルの履歴を取得する
-	#logs = git.git.gblob(f).log(5)
-	logs = git.commits
+	# XXX PRのコミットでない
+	#logs = git.commits
+	logs = g.gblob(f).log(10)
 
 	message = "### #{f}\n\n"
 	message << "date | commit | msg | user |\n"
@@ -25,7 +30,7 @@ files.each do |f|
 		tmp.push(d)
 	    message << "| #{d[:date]} | #{d[:id]} | #{d[:msg]} | #{d[:user]} |\n"	
 
-		# TODO ??
+		# TODO 自分以外
 		reviewer = d[:user]
 	end
 
