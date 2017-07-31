@@ -25,8 +25,7 @@ files.each do |f|
 	    message << "| #{d[:date]} | #{d[:id]} | #{d[:msg]} | #{d[:user]} |\n"	
 
 		# TODO ??
-		github.pr_json["reviewers"] = d[:user]
-		message "#{d[:user]}さんをレビューアにします"
+		reviewer = d[:user]
 	end
 
 	data.push(tmp)
@@ -36,3 +35,7 @@ files.each do |f|
 	# TODO 直近のコミッタをレビューアに設定する
 	
 end
+
+github.pr_json["reviewers"] = d[:user]
+message "#{d[:user]}さんをレビューアにします"
+
