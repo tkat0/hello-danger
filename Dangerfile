@@ -6,6 +6,9 @@ g = Git.open("./", :log => Logger.new(STDOUT))
 
 files = (git.added_files + git.modified_files) #=> FileList
 
+# 何個履歴出すか
+N = 5
+
 markdown "## あなたが修正したファイルに関する直近のコミット\n\n"
 data = []
 reviewer = nil
@@ -14,7 +17,7 @@ files.each do |f|
 	# gitからそのファイルの履歴を取得する
 	# XXX PRのコミットでない
 	#logs = git.commits
-	logs = g.gblob(f).log(10)
+	logs = g.gblob(f).log(N)
 
 	message = "### #{f}\n\n"
 	message << "date | commit | msg | user |\n"
