@@ -11,6 +11,7 @@ files = (git.added_files + git.modified_files) #=> FileList
 N = 5
 
 markdown "## あなたが修正したファイルに関する直近のコミット\n\n"
+markdown "この辺りの変更と競合はしないか確認してね\n\n"
 data = []
 reviewer = nil
 files.each do |f|
