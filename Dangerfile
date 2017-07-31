@@ -4,6 +4,7 @@ require "logger"
 require "git"
 g = Git.open("./", :log => Logger.new(STDOUT))
 
+# PRで修正したファイル
 files = (git.added_files + git.modified_files) #=> FileList
 
 # 何個履歴出すか
@@ -15,7 +16,7 @@ reviewer = nil
 files.each do |f|
 
 	# gitからそのファイルの履歴を取得する
-	# XXX PRのコミットでない
+	# XXX PRのブランチ以外のみを参照したい
 	#logs = git.commits
 	logs = g.gblob(f).log(N)
 
@@ -47,5 +48,5 @@ files.each do |f|
 end
 
 github.pr_json["reviewers"] = reviewer
-message "#{reviewer}さんをレビューアにします"
+message "#{reviewer}さんをレビューアにします(自分自身だったらごめんね :kissing_closed_eyes: )"
 
