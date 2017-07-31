@@ -1,4 +1,5 @@
 # PRしたファイルの直近のコミット履歴を表で可視化する
+# test
 
 files = (git.added_files + git.modified_files) #=> FileList
 
