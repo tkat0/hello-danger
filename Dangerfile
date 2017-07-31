@@ -2,7 +2,7 @@
 
 files = (git.added_files + git.modified_files) #=> FileList
 
-markdown "## 直近のコミット\n\n"
+markdown "## あなたが修正したファイルに関する直近のコミット\n\n"
 data = []
 files.each do |f|
 	# gitからそのファイルの履歴を取得する
@@ -23,6 +23,10 @@ files.each do |f|
 		}
 		tmp.push(d)
 	    message << "| #{d[:date]} | #{d[:id]} | #{d[:msg]} | #{d[:user]} |\n"	
+
+		# TODO ??
+		github.pr_json["reviewers"] = d[:user]
+		message "#{d[:user]}さんをレビューアにします"
 	end
 
 	data.push(tmp)
