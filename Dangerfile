@@ -4,6 +4,7 @@ files = (git.added_files + git.modified_files) #=> FileList
 
 markdown "## あなたが修正したファイルに関する直近のコミット\n\n"
 data = []
+reviewer = nil
 files.each do |f|
 	# gitからそのファイルの履歴を取得する
 	#logs = git.git.gblob(f).log(5)
