@@ -36,6 +36,6 @@ files.each do |f|
 	
 end
 
-github.pr_json["reviewers"] = d[:user]
+github.pr_json["reviewers"] = reviewer
 message "#{d[:user]}さんをレビューアにします"
 
