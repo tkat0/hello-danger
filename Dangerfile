@@ -1,5 +1,6 @@
 # PRしたファイルの直近のコミット履歴を表で可視化する
 
+require "logger"
 require "git"
 g = Git.open("./", :log => Logger.new(STDOUT))
 
